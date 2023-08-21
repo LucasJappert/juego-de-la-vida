@@ -8,9 +8,13 @@ const StartProcess = () => {
     setInterval(() => {
         Update();
         Draw();
-    }, 1000/updatesPerSecond);
+    }, 1);
 };
-setTimeout(StartProcess(), 1000);
+setTimeout(() => {
+    Update();
+    Draw();
+    StartProcess();
+}, 1);
 //requestAnimationFrame(Draw);
 
 var canvas = document.getElementById("micanvas");
@@ -55,6 +59,10 @@ function Update() {
             cell.Update(prevMatrix);
         });
     });
+    // console.log(Object.values(cellsMatrix).map(x => Object.values(x)).flat()); 
+    
+    console.log(Object.values(cellsMatrix).map(x => Object.values(x)).flat().filter(x => x.AmIAlive()).length);
+    // asdasdasd
 }
 // console.log(cellsMatrix[23][22]);
 function Draw() {
